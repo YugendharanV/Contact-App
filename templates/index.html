@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contact App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Contacts</h2>
+        <form action="/add" method="post">
+            <input type="text" name="name" placeholder="Name" required>
+            <input type="text" name="phone" placeholder="Phone Number" required>
+            <button type="submit" class="btn-add">Add Contact</button>
+        </form>
+
+        <ul>
+            {% for contact in contacts %}
+                <li>
+                    {{ contact.name }} - {{ contact.phone }}
+                    <a class="btn-delete" href="/delete/{{ loop.index0 }}">Delete</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
